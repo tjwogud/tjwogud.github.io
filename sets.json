@@ -1,0 +1,198 @@
+[
+  {
+    "type": "default",
+    "sets": [
+      {
+        "id": "twdmg",
+        "name": "안티 타워"
+      },
+      {
+        "id": "sgdmg",
+        "name": "안티 시즈"
+      },
+      {
+        "id": "spdmg",
+        "name": "안티 서포터"
+      },
+      {
+        "id": "snpdmg",
+        "name": "안티 스나이퍼"
+      },
+      {
+        "id": "rngdmg",
+        "name": "안티 레인저"
+      },
+      {
+        "id": "defdmg",
+        "name": "안티 디펜더"
+      },
+      {
+        "id": "strkdmg",
+        "name": "안티 스트라이커"
+      },
+      {
+        "id": "cdr",
+        "name": "스킬충전속도"
+      },
+      {
+        "id": "aspd",
+        "name": "공격속도"
+      },
+      {
+        "id": "cdmg",
+        "name": "치명타 피해"
+      },
+      {
+        "id": "eva",
+        "name": "회피"
+      },
+      {
+        "id": "hit",
+        "name": "명중"
+      },
+      {
+        "id": "crit",
+        "name": "치명"
+      },
+      {
+        "id": "def",
+        "name": "방어"
+      },
+      {
+        "id": "hp",
+        "name": "체력"
+      },
+      {
+        "id": "atk",
+        "name": "공격"
+      }
+    ]
+  },
+  {
+    "type": "spectral",
+    "sets": [
+      {
+        "id": "sp_bullet",
+        "name": "스펙트럴 불렛"
+      },
+      {
+        "id": "sp_gear",
+        "name": "스펙트럴 기어"
+      },
+      {
+        "id": "sp_chain",
+        "name": "스펙트럴 체인"
+      },
+      {
+        "id": "sp_smite",
+        "name": "스펙트럴 스마이트"
+      },
+      {
+        "id": "sp_blaze",
+        "name": "스펙트럴 블레이즈"
+      },
+      {
+        "id": "sp_spirit",
+        "name": "스펙트럴 스피릿"
+      }
+    ]
+  },
+  {
+    "type": "phantom",
+    "sets": [
+      {
+        "id": "pt_armor",
+        "name": "팬텀 아머"
+      },
+      {
+        "id": "pt_shaft",
+        "name": "팬텀 샤프트"
+      },
+      {
+        "id": "pt_barrier",
+        "name": "팬텀 배리어"
+      },
+      {
+        "id": "pt_protection",
+        "name": "팬텀 프로텍션"
+      },
+      {
+        "id": "pt_glare",
+        "name": "팬텀 글레어"
+      },
+      {
+        "id": "pt_soul",
+        "name": "팬텀 소울"
+      }
+    ]
+  },
+  {
+    "type": "dimension",
+    "sets": [
+      {
+        "id": "ccres",
+        "name": "상태이상 저항"
+      },
+      {
+        "id": "gainheal",
+        "name": "받는 회복량 증가"
+      },
+      {
+        "id": "airres",
+        "name": "vs공중 피해감소"
+      },
+      {
+        "id": "landres",
+        "name": "vs지상 피해감소"
+      },
+      {
+        "id": "shortres",
+        "name": "vs근거리 피해감소"
+      },
+      {
+        "id": "longres",
+        "name": "vs원거리 피해감소"
+      },
+      {
+        "id": "defpen",
+        "name": "방어 관통률"
+      },
+      {
+        "id": "heal",
+        "name": "회복 강화"
+      },
+      {
+        "id": "airdmg",
+        "name": "vs공중 피해"
+      },
+      {
+        "id": "landdmg",
+        "name": "vs지상 피해"
+      },
+      {
+        "id": "speed",
+        "name": "이동속도"
+      },
+      {
+        "id": "normaldmg",
+        "name": "특수기 증폭"
+      },
+      {
+        "id": "hyperdmg",
+        "name": "궁극기 증폭"
+      },
+      {
+        "id": "cdr2",
+        "name": "스킬충전속도 II"
+      },
+      {
+        "id": "aspd2",
+        "name": "공격속도 II"
+      },
+      {
+        "id": "hp2",
+        "name": "체력 II"
+      }
+    ]
+  }
+]

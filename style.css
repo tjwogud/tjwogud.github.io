@@ -1,0 +1,12 @@
+div.preset {
+  margin-top: 20px;
+}
+
+canvas.preset {
+  vertical-align: middle;
+}
+
+button.preset {
+  width: 50px;
+  height: 30px;
+}

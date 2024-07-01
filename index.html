@@ -1,16 +1,30 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>테스트 페이지</title>
-	<head>
-	<body>
-		<p>테스트<sup><a title="대충 테스트" name="rfn-1" href="#fn-1">[1]</a></sup></p>
-		<div style="line-height:50"><br></div>
-		<hr>
-		<p><a name="fn-1" href="#rfn-1">[1]</a> 대충 테스트<p>
-	</body>
-</html>
+<html lang="ko-kr">
 
-<style>
-	a { color: blue; }
-</style>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>카사 장비 이미지 생성기</title>
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1 id="title">카사 장비 이미지 생성기</h1>
+  <br>
+  <select id="unitType">
+    <option value="c">카운터</option>
+    <option value="s">솔저</option>
+    <option value="m">메카닉</option>
+  </select>
+  <br>
+  <br>
+  <details id="presets">
+    <summary>프리셋</summary>
+  </details>
+  <br>
+  <canvas id="slots" width="1000" height="250"></canvas>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "adv",
+    "name": "대적자",
+    "tier": 5
+  },
+  {
+    "id": "cha",
+    "name": "도전자"
+  },
+  {
+    "id": "pvp1",
+    "name": "메이즈"
+  },
+  {
+    "id": "hmb",
+    "name": "허밍버드"
+  },
+  {
+    "id": "pvp2",
+    "name": "고르디우스"
+  },
+  {
+    "id": "raid1_t6",
+    "name": "초전도"
+  },
+  {
+    "id": "raid1_t7",
+    "name": "브리트라",
+    "tier": 7
+  },
+  {
+    "id": "raid2_t6",
+    "name": "고분자"
+  },
+  {
+    "id": "raid2_t7",
+    "name": "인히비터",
+    "tier": 7
+  },
+  {
+    "id": "dim1",
+    "name": "스위프트",
+    "tier": 7
+  },
+  {
+    "id": "dim2",
+    "name": "와일드",
+    "tier": 7
+  },
+  {
+    "id": "dim3",
+    "name": "플레임",
+    "tier": 7
+  },
+  {
+    "id": "sha1",
+    "name": "스펙트럴",
+    "tier": 6
+  },
+  {
+    "id": "sha2",
+    "name": "팬텀",
+    "tier": 6
+  },
+  {
+    "id": "pvpS",
+    "name": "신시어"
+  },
+  {
+    "id": "pvpR",
+    "name": "로얄"
+  },
+  {
+    "id": "pvpD",
+    "name": "디보션"
+  },
+  {
+    "id": "pvpC",
+    "name": "커리지"
+  }
+]

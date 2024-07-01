@@ -1,0 +1,268 @@
+[
+  {
+    "name": "인메골골",
+    "preset": [
+      {
+        "gear": "raid2_t7",
+        "set": "hp",
+        "lvl": 7
+      },
+      {
+        "gear": "pvp1",
+        "set": "hp",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvp2",
+        "type": "B",
+        "set": "hp",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvp2",
+        "type": "B",
+        "set": "hp",
+        "tier": 7,
+        "lvl": 9
+      }
+    ]
+  },
+  {
+    "name": "메스충",
+    "preset": [
+      {
+        "gear": "pvp1",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvp1",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvp1",
+        "type": "A",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvp1",
+        "type": "A",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      }
+    ]
+  },
+  {
+    "name": "브공속",
+    "preset": [
+      {
+        "gear": "raid1_t7",
+        "set": "aspd",
+        "lvl": 7
+      },
+      {
+        "gear": "raid1_t7",
+        "set": "aspd",
+        "lvl": 7
+      },
+      {
+        "gear": "raid1_t7",
+        "type": "A",
+        "set": "aspd",
+        "lvl": 7
+      },
+      {
+        "gear": "raid1_t7",
+        "type": "A",
+        "set": "aspd",
+        "lvl": 7
+      }
+    ]
+  },
+  {
+    "name": "렐공속",
+    "preset": [
+      {
+        "gear": "dim1",
+        "set": "aspd",
+        "lvl": 7
+      },
+      {
+        "gear": "dim1",
+        "set": "aspd",
+        "lvl": 7
+      },
+      {
+        "gear": "dim1",
+        "type": "A",
+        "set": "aspd",
+        "lvl": 7
+      },
+      {
+        "gear": "dim1",
+        "type": "A",
+        "set": "aspd",
+        "lvl": 7
+      }
+    ]
+  },
+  {
+    "name": "렐스충",
+    "preset": [
+      {
+        "gear": "dim1",
+        "set": "cdr",
+        "lvl": 7
+      },
+      {
+        "gear": "dim1",
+        "set": "cdr",
+        "lvl": 7
+      },
+      {
+        "gear": "dim1",
+        "type": "A",
+        "set": "cdr",
+        "lvl": 7
+      },
+      {
+        "gear": "dim1",
+        "type": "A",
+        "set": "cdr",
+        "lvl": 7
+      }
+    ]
+  },
+  {
+    "name": "허디신신",
+    "preset": [
+      {
+        "gear": "hmb",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvpD",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvpS",
+        "type": "B",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvpS",
+        "type": "B",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      }
+    ]
+  },
+  {
+    "name": "로디커커",
+    "preset": [
+      {
+        "gear": "pvpR",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvpD",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvpC",
+        "type": "A",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvpC",
+        "type": "A",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      }
+    ]
+  },
+  {
+    "name": "정글 받회증",
+    "preset": [
+      {
+        "gear": "dim2",
+        "set": "gainheal",
+        "tier": 7,
+        "lvl": 7
+      },
+      {
+        "gear": "dim2",
+        "set": "gainheal",
+        "tier": 7,
+        "lvl": 7
+      },
+      {
+        "gear": "dim2",
+        "type": "B",
+        "set": "gainheal",
+        "tier": 7,
+        "lvl": 7
+      },
+      {
+        "gear": "dim2",
+        "type": "B",
+        "set": "gainheal",
+        "tier": 7,
+        "lvl": 7
+      }
+    ]
+  },
+  {
+    "name": "화산 지피",
+    "preset": [
+      {
+        "gear": "dim3",
+        "set": "landdmg",
+        "tier": 7,
+        "lvl": 7
+      },
+      {
+        "gear": "dim3",
+        "set": "landdmg",
+        "tier": 7,
+        "lvl": 7
+      },
+      {
+        "gear": "dim3",
+        "type": "A",
+        "set": "landdmg",
+        "tier": 7,
+        "lvl": 7
+      },
+      {
+        "gear": "dim3",
+        "type": "A",
+        "set": "landdmg",
+        "tier": 7,
+        "lvl": 7
+      }
+    ]
+  }
+]
