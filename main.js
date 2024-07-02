@@ -61,7 +61,20 @@ function drawGear(canvas, gearInfo, dx, dy, dw, dh) {
   if (gearInfo.lvl > 0) loads.push(loadImage(`img/lvl/lvl_${gearInfo.lvl}.png`));
   var relic = findGear(gearInfo.gearId)["tier"] == 7;
   if (relic) loads.push(loadImage(`img/relic/relic_${gearInfo.relic}.png`));
+  var key = `${dx},${dy},${dw},${dw},${dh}`;
+  var id = seed++;
+  if (canvas.dataset.lastDraw == undefined) canvas.dataset.lastDraw = "{}";
+  let json = JSON.parse(canvas.dataset.lastDraw);
+  json[key] = id;
+  canvas.dataset.lastDraw = JSON.stringify(json);
   Promise.all(loads).then((images) => {
+    let json = JSON.parse(canvas.dataset.lastDraw);
+    if (json[key] != id) {
+      console.log(`old promise! (key:${key},id:${id},now:${json[key]})`);
+      return;
+    }
+    delete json[key];
+    canvas.dataset.lastDraw = JSON.stringify(json);
     let context = canvas.getContext("2d");
     context.drawImage(background, dx, dy, dw, dh);
     context.drawImage(
@@ -107,6 +120,7 @@ function drawGear(canvas, gearInfo, dx, dy, dw, dh) {
 }
 
 const RELIC_STR = "00111223333";
+var seed = 0;
 var gears;
 var sets;
 var presets;
@@ -188,7 +202,9 @@ Promise.all([
   }
   let lvlInput = document.getElementById("lvlInput");
   lvlInput.onchange = () => {
-    let lvl = parseInt(lvlInput.value);
+    if (lvlInput.value === "") lvlInput.value = 0;
+    let lvl = Math.max(Math.min(lvlInput.value, 10), 0);
+    lvlInput.value = lvl;
     slots[selectedSlot].lvl = lvl;
     slots[selectedSlot].relic = RELIC_STR[lvl];
     drawGear(selectedSlot);
