@@ -3,6 +3,7 @@ function loadImage(url) {
   image.src = url;
   return new Promise((resolve, reject) => {
     image.onload = () => resolve(image);
+    image.onerror = () => reject();
   });
 }
 
@@ -35,9 +36,16 @@ function copy(gearInfo) {
 }
 
 function drawGear(canvas, gearInfo, dx, dy, dw, dh) {
+  let main = false;
   if (typeof canvas === "number") {
-    dx = 250 * canvas;
+    main = true;
+    let slot = canvas;
     canvas = document.getElementById("slots");
+    gearInfo = slots[slot];
+    dx = (canvas.width / 4) * slot;
+    dy = 0;
+    dw = canvas.width / 4;
+    dh = canvas.height;
   }
   if (dx == undefined) dx = 0;
   if (dy == undefined) dy = 0;
@@ -93,14 +101,21 @@ function drawGear(canvas, gearInfo, dx, dy, dw, dh) {
         (dw * 78) / 250,
         (dh * 70) / 250
       );
+    if (main)
+      document.getElementById("download").parentElement.href = canvas.toDataURL("images/png");
   });
 }
 
+const RELIC_STR = "00111223333";
 var gears;
 var sets;
 var presets;
 var background;
+var prevType;
+var prevSlot;
+var prevSub;
 var selectedType = "c";
+var selectedSlot = 0;
 var slots = [];
 
 Promise.all([
@@ -114,14 +129,69 @@ Promise.all([
   sets = result[2];
   presets = result[3];
   background = result[4];
-  let typeSelect = document.getElementById("unitType");
+  document.getElementById("copy").onclick = () => {
+    document
+      .getElementById("slots")
+      .toBlob((blob) => navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]));
+    alert("복사되었습니다.");
+  };
+  let typeSelect = document.getElementById("typeSelect");
   typeSelect.onchange = () => {
     selectedType = typeSelect.value;
     for (let i = 0; i < 4; i++) {
-      let info = slots[i];
-      info.unitType = selectedType;
-      drawGear(i, info);
+      if (selectedSlot == i) continue;
+      slots[i].unitType = selectedType;
+      updateSettings(i);
+      drawGear(i);
     }
+    slots[selectedSlot].unitType = selectedType;
+    updateSettings(selectedSlot);
+    drawGear(selectedSlot);
+  };
+  let slotSelect = document.getElementById("slotSelect");
+  slotSelect.onchange = () => {
+    let value = parseInt(slotSelect.value);
+    if (value < 2) {
+      subSelect.hidden = true;
+    } else {
+      subSelect.hidden = false;
+    }
+    selectedSlot = value;
+    updateSettings();
+  };
+  let gearSelect = document.getElementById("gearSelect");
+  gearSelect.onchange = () => {
+    slots[selectedSlot].gearId = gearSelect.value;
+    updateSettings();
+    drawGear(selectedSlot);
+  };
+  let subSelect = document.getElementById("subSelect");
+  subSelect.onchange = () => {
+    if (selectedSlot < 2) return;
+    slots[selectedSlot].slot = subSelect.value === "a" ? 2 : 3;
+    updateSettings();
+    drawGear(selectedSlot);
+  };
+  let setSelect = document.getElementById("setSelect");
+  setSelect.onchange = () => {
+    slots[selectedSlot].set = setSelect.value;
+    drawGear(selectedSlot);
+  };
+  let tierInputs = document.querySelectorAll("#tierSelect > input");
+  for (let i = 0; i < 3; i++) {
+    let tier = i + 5;
+    tierInputs[i].onclick = () => {
+      slots[selectedSlot].tier = tier;
+      updateTier();
+      drawGear(selectedSlot);
+    };
+  }
+  let lvlInput = document.getElementById("lvlInput");
+  lvlInput.onchange = () => {
+    let lvl = parseInt(lvlInput.value);
+    slots[selectedSlot].lvl = lvl;
+    slots[selectedSlot].relic = RELIC_STR[lvl];
+    drawGear(selectedSlot);
   };
   let p = document.getElementById("presets");
   for (let preset of presets) {
@@ -132,7 +202,6 @@ Promise.all([
     canvas.className = "preset";
     canvas.width = 240;
     canvas.height = 60;
-    btn.className = "preset";
     btn.textContent = "적용";
     div.append(preset["name"], document.createElement("br"), canvas, " ", btn);
     p.append(div);
@@ -141,23 +210,105 @@ Promise.all([
       let gear = preset["preset"][i];
       let slot = i < 2 ? i : gear["type"] == "A" ? 2 : 3;
       let tier = findGear(gear["gear"])["tier"] ?? gear["tier"];
-      let relic = "00111223333"[gear["lvl"]];
-      let info = getGearInfo(gear["gear"], "c", slot, gear["set"], tier, gear["lvl"], relic);
+      let relic = RELIC_STR[gear["lvl"]];
+      let info = getGearInfo(gear["gear"], "c", slot, gear["set"], tier, gear["lvl"] ?? 0, relic);
       preset["gearInfo"].push(info);
       drawGear(canvas, info, i * 60, 0, 60, 60);
     }
     btn.onclick = () => {
       for (let i = 0; i < 4; i++) {
-        let info = copy(preset["gearInfo"][i]);
-        info.unitType = selectedType;
-        slots[i] = info;
-        drawGear(i, info);
+        slots[i] = copy(preset["gearInfo"][i]);
+        slots[i].unitType = selectedType;
+        drawGear(i);
       }
+      updateSettings();
     };
   }
+  let defaultPreset = presets.find((e) => e["name"] === "메스충")["gearInfo"];
   for (let i = 0; i < 4; i++) {
-    let info = copy(presets.find((e) => e["name"] === "메스충")["gearInfo"][i]);
-    slots[i] = info;
-    drawGear(i, info);
+    slots[i] = copy(defaultPreset[i]);
+    drawGear(i);
   }
+  updateSettings();
 });
+
+function updateSettings(slot) {
+  if (slot == undefined) slot = selectedSlot;
+  let sub = document.getElementById("subSelect").value;
+  if (prevType != selectedType || prevSlot != slot || prevSub != sub) updateGears(slot);
+  prevType = selectedType;
+  prevSlot = slot;
+  prevSub = sub;
+  if (slot >= 2) updateSub(slot);
+  updateSets(slot);
+  updateTier(slot);
+  let gear = slots[slot];
+  let gearSelect = document.getElementById("gearSelect");
+  let setSelect = document.getElementById("setSelect");
+  let lvlInput = document.getElementById("lvlInput");
+  gearSelect.value = gear.gearId;
+  setSelect.value = gear.set;
+  lvlInput.value = gear.lvl;
+}
+
+function updateGears(slot) {
+  let gearSelect = document.getElementById("gearSelect");
+  while (gearSelect.options.length > 0) gearSelect.remove(0);
+  let change = false;
+  let first;
+  for (let gear of gears) {
+    let limit = gear["limit"]?.[slots[slot].slot];
+    if (limit != undefined && limit !== "*" && !limit.includes(selectedType)) {
+      if (slots[slot].gearId === gear["id"]) change = true;
+      continue;
+    }
+    if (first == undefined) first = gear;
+    let option = document.createElement("option");
+    option.value = gear["id"];
+    option.textContent = gear["name"];
+    gearSelect.add(option);
+  }
+  if (change) slots[slot].gearId = first["id"];
+}
+
+function updateSub(slot) {
+  let gearSelect = document.getElementById("gearSelect");
+  let subSelect = document.getElementById("subSelect");
+  subSelect.value = slots[slot].slot == 2 ? "a" : "b";
+  let gear = findGear(slots[slot].gearId);
+  let limit = gear.limit;
+  let a = limit?.[2] != undefined && limit?.[2] !== "*" && !limit?.[2].includes(selectedType);
+  let b = limit?.[3] != undefined && limit?.[3] !== "*" && !limit?.[3].includes(selectedType);
+  if ((a && b) || (a && slots[slot].slot == 2) || (b && slots[slot].slot == 3))
+    slots[slot].gearId = gearSelect.options[0].value;
+  else if (a) slots[slot].slot = 3;
+  else if (b) slots[slot].slot = 2;
+}
+
+function updateSets(slot) {
+  let setSelect = document.getElementById("setSelect");
+  let type = findGear(slots[slot].gearId)["set"] ?? "default";
+  while (setSelect.options.length > 0) setSelect.remove(0);
+  let list = sets.find((e) => e["type"] === type)["sets"];
+  for (let set of list) {
+    let option = document.createElement("option");
+    option.value = set["id"];
+    option.textContent = set["name"];
+    setSelect.add(option);
+  }
+  if (list.find((e) => e["id"] === slots[slot].set) == undefined) slots[slot].set = list[0]["id"];
+}
+
+function updateTier(slot) {
+  let tierInputs = document.querySelectorAll("#tierSelect > input");
+  let tier = findGear(slots[slot].gearId).tier;
+  if (tier != undefined) slots[slot].tier = tier;
+  else if (slots[slot].tier == 5) slots[slot].tier = 6;
+  for (let i = 0; i < 3; i++) {
+    if ((tier != undefined && tier != i + 5) || (tier == undefined && i == 0))
+      tierInputs[i].disabled = true;
+    else tierInputs[i].disabled = false;
+    if (slots[slot].tier == i + 5) tierInputs[i].checked = true;
+    else tierInputs[i].checked = false;
+  }
+}

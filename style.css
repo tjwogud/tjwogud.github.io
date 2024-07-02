@@ -2,11 +2,34 @@ div.preset {
   margin-top: 20px;
 }
 
-canvas.preset {
+canvas {
   vertical-align: middle;
 }
 
 button.preset {
   width: 50px;
   height: 30px;
+}
+
+#buttons {
+  margin-left: 20px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+#buttons button {
+  width: 100px;
+  height: 40px;
+}
+
+label[for="tierSelect"] {
+  vertical-align: top;
+}
+
+#tierSelect {
+  display: inline-block;
+}
+
+input:disabled + label {
+  color: lightslategray;
 }

@@ -2,23 +2,28 @@
   {
     "id": "adv",
     "name": "대적자",
-    "tier": 5
+    "tier": 5,
+    "limit": ["c", "c", "c", "c"]
   },
   {
     "id": "cha",
-    "name": "도전자"
+    "name": "도전자",
+    "limit": ["cm", "c", "", "m"]
   },
   {
     "id": "pvp1",
-    "name": "메이즈"
+    "name": "메이즈",
+    "limit": ["*", "*", "*", ""]
   },
   {
     "id": "hmb",
-    "name": "허밍버드"
+    "name": "허밍버드",
+    "limit": ["*", "", "", ""]
   },
   {
     "id": "pvp2",
-    "name": "고르디우스"
+    "name": "고르디우스",
+    "limit": ["", "", "*", "*"]
   },
   {
     "id": "raid1_t6",
@@ -46,37 +51,47 @@
   {
     "id": "dim2",
     "name": "와일드",
-    "tier": 7
+    "tier": 7,
+    "set": "dimension"
   },
   {
     "id": "dim3",
     "name": "플레임",
-    "tier": 7
+    "tier": 7,
+    "set": "dimension"
   },
   {
     "id": "sha1",
     "name": "스펙트럴",
-    "tier": 6
+    "tier": 6,
+    "set": "spectral",
+    "limit": ["*", "*", "*", ""]
   },
   {
     "id": "sha2",
     "name": "팬텀",
-    "tier": 6
+    "tier": 6,
+    "set": "phantom",
+    "limit": ["*", "*", "", "*"]
   },
   {
     "id": "pvpS",
-    "name": "신시어"
+    "name": "신시어",
+    "limit": ["", "", "", "*"]
   },
   {
     "id": "pvpR",
-    "name": "로얄"
+    "name": "로얄",
+    "limit": ["*", "", "", ""]
   },
   {
     "id": "pvpD",
-    "name": "디보션"
+    "name": "디보션",
+    "limit": ["", "*", "", ""]
   },
   {
     "id": "pvpC",
-    "name": "커리지"
+    "name": "커리지",
+    "limit": ["", "", "*", ""]
   }
 ]
