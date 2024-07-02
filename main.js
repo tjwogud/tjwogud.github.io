@@ -240,6 +240,13 @@ Promise.all([
       updateSettings();
     };
   }
+  let slotsCanvas = document.getElementById("slots");
+  slotsCanvas.addEventListener("click", (e) => {
+    let x = e.clientX - slotsCanvas.getBoundingClientRect().left;
+    let slot = Math.max(Math.min(Math.floor((x / slotsCanvas.width) * 4), 3), 0);
+    slotSelect.value = slot;
+    slotSelect.onchange();
+  });
   let defaultPreset = presets.find((e) => e["name"] === "메스충")["gearInfo"];
   for (let i = 0; i < 4; i++) {
     slots[i] = copy(defaultPreset[i]);
