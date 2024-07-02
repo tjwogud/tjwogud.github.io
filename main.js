@@ -182,7 +182,7 @@ Promise.all([
     let tier = i + 5;
     tierInputs[i].onclick = () => {
       slots[selectedSlot].tier = tier;
-      updateTier();
+      updateTier(selectedSlot);
       drawGear(selectedSlot);
     };
   }
