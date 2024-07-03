@@ -18,6 +18,10 @@ button.preset {
 }
 
 @media only screen and (max-width: 800px) {
+  canvas#slots {
+    width: 90vw;
+  }
+
   br.nlButtons {
     display: block;
   }

@@ -242,8 +242,9 @@ Promise.all([
   }
   let slotsCanvas = document.getElementById("slots");
   slotsCanvas.addEventListener("click", (e) => {
-    let x = e.clientX - slotsCanvas.getBoundingClientRect().left;
-    let slot = Math.max(Math.min(Math.floor((x / slotsCanvas.width) * 4), 3), 0);
+    let rect = slotsCanvas.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    let slot = Math.max(Math.min(Math.floor((x / rect.width) * 4), 3), 0);
     slotSelect.value = slot;
     slotSelect.onchange();
   });
