@@ -213,6 +213,7 @@ Promise.all([
     slots[selectedSlot].relic = RELIC_STR[lvl];
     drawGear(selectedSlot);
   };
+  let hover = document.getElementById("hover");
   let slotsCanvas = document.getElementById("slots");
   slotsCanvas.addEventListener("click", (e) => {
     let rect = slotsCanvas.getBoundingClientRect();
@@ -220,7 +221,16 @@ Promise.all([
     let slot = Math.max(Math.min(Math.floor((x / rect.width) * 4), 3), 0);
     slotSelect.value = slot;
     slotSelect.onchange();
+    hover.style.background = "#ffffff00";
   });
+  slotsCanvas.addEventListener("mousemove", (e) => {
+    let rect = slotsCanvas.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    let slot = Math.max(Math.min(Math.floor((x / rect.width) * 4), 3), 0);
+    hover.style.left = `${rect.left + (slot * rect.width) / 4}px`;
+    hover.style.background = "#ffffff40";
+  });
+  slotsCanvas.addEventListener("mouseleave", () => (hover.style.background = "#ffffff00"));
   initPresets();
   let defaultPreset = presets.find((e) => e["name"] === "메스충")["gearInfo"];
   for (let i = 0; i < 4; i++) {

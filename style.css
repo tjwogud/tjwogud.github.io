@@ -6,6 +6,14 @@ canvas {
   vertical-align: middle;
 }
 
+#hover {
+  width: 20vw;
+  max-width: 200px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  pointer-events: none;
+}
+
 #slots {
   width: 80vw;
   max-width: 800px;
