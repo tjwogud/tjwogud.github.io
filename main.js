@@ -164,6 +164,7 @@ Promise.all([
     slots[selectedSlot].unitType = selectedType;
     updateSettings(selectedSlot);
     drawGear(selectedSlot);
+    updatePresets();
   };
   let slotSelect = document.getElementById("slotSelect");
   slotSelect.onchange = () => {
@@ -212,6 +213,24 @@ Promise.all([
     slots[selectedSlot].relic = RELIC_STR[lvl];
     drawGear(selectedSlot);
   };
+  let slotsCanvas = document.getElementById("slots");
+  slotsCanvas.addEventListener("click", (e) => {
+    let rect = slotsCanvas.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    let slot = Math.max(Math.min(Math.floor((x / rect.width) * 4), 3), 0);
+    slotSelect.value = slot;
+    slotSelect.onchange();
+  });
+  initPresets();
+  let defaultPreset = presets.find((e) => e["name"] === "메스충")["gearInfo"];
+  for (let i = 0; i < 4; i++) {
+    slots[i] = copy(defaultPreset[i]);
+    drawGear(i);
+  }
+  updateSettings();
+});
+
+function initPresets() {
   let p = document.getElementById("presets");
   for (let preset of presets) {
     let div = document.createElement("div");
@@ -224,13 +243,25 @@ Promise.all([
     btn.textContent = "적용";
     div.append(preset["name"], document.createElement("br"), canvas, " ", btn);
     p.append(div);
+    if (preset.limit != undefined && !preset["limit"].includes(selectedType)) {
+      div.hidden = true;
+      continue;
+    } else div.hidden = false;
     preset["gearInfo"] = [];
     for (let i = 0; i < 4; i++) {
       let gear = preset["preset"][i];
       let slot = i < 2 ? i : gear["type"] == "A" ? 2 : 3;
       let tier = findGear(gear["gear"])["tier"] ?? gear["tier"];
       let relic = RELIC_STR[gear["lvl"]];
-      let info = getGearInfo(gear["gear"], "c", slot, gear["set"], tier, gear["lvl"] ?? 0, relic);
+      let info = getGearInfo(
+        gear["gear"],
+        selectedType,
+        slot,
+        gear["set"],
+        tier,
+        gear["lvl"] ?? 0,
+        relic
+      );
       preset["gearInfo"].push(info);
       drawGear(canvas, info, i * 60, 0, 60, 60);
     }
@@ -243,21 +274,24 @@ Promise.all([
       updateSettings();
     };
   }
-  let slotsCanvas = document.getElementById("slots");
-  slotsCanvas.addEventListener("click", (e) => {
-    let rect = slotsCanvas.getBoundingClientRect();
-    let x = e.clientX - rect.left;
-    let slot = Math.max(Math.min(Math.floor((x / rect.width) * 4), 3), 0);
-    slotSelect.value = slot;
-    slotSelect.onchange();
-  });
-  let defaultPreset = presets.find((e) => e["name"] === "메스충")["gearInfo"];
-  for (let i = 0; i < 4; i++) {
-    slots[i] = copy(defaultPreset[i]);
-    drawGear(i);
+}
+
+function updatePresets() {
+  let p = document.getElementById("presets");
+  for (let i = 0; i < presets.length; i++) {
+    let preset = presets[i];
+    let element = p.children[i + 1];
+    if (preset.limit != undefined && !preset["limit"].includes(selectedType)) {
+      element.hidden = true;
+      continue;
+    } else element.hidden = false;
+    for (let i = 0; i < 4; i++) {
+      let info = copy(preset["gearInfo"][i]);
+      info.unitType = selectedType;
+      drawGear(element.children[1], info, i * 60, 0, 60, 60);
+    }
   }
-  updateSettings();
-});
+}
 
 function updateSettings(slot) {
   if (slot == undefined) slot = selectedSlot;

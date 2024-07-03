@@ -1,5 +1,29 @@
 [
   {
+    "name": "대적자",
+    "preset": [
+      {
+        "gear": "adv",
+        "set": "cdr"
+      },
+      {
+        "gear": "adv",
+        "set": "cdr"
+      },
+      {
+        "gear": "adv",
+        "type": "A",
+        "set": "cdr"
+      },
+      {
+        "gear": "adv",
+        "type": "B",
+        "set": "cdr"
+      }
+    ],
+    "limit": "c"
+  },
+  {
     "name": "인메골골",
     "preset": [
       {
