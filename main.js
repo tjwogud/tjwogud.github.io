@@ -228,6 +228,7 @@ Promise.all([
     let x = e.clientX - rect.left;
     let slot = Math.max(Math.min(Math.floor((x / rect.width) * 4), 3), 0);
     hover.style.left = `${rect.left + (slot * rect.width) / 4}px`;
+    hover.style.width = `${rect.height}px`;
     hover.style.background = "#ffffff40";
   });
   slotsCanvas.addEventListener("mouseleave", () => (hover.style.background = "#ffffff00"));
