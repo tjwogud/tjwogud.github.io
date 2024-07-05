@@ -46,11 +46,12 @@ function drawGear(canvas, gearInfo, dx, dy, dw, dh) {
     dy = 0;
     dw = canvas.width / 4;
     dh = canvas.height;
+  } else {
+    if (dx == undefined) dx = 0;
+    if (dy == undefined) dy = 0;
+    if (dw == undefined) dw = 250;
+    if (dh == undefined) dh = 250;
   }
-  if (dx == undefined) dx = 0;
-  if (dy == undefined) dy = 0;
-  if (dw == undefined) dw = 250;
-  if (dh == undefined) dh = 250;
   let loads = [
     loadImage(
       `img/gear/${gearInfo.gearId}/${gearInfo.gearId}_${gearInfo.unitType}_${gearInfo.slot}`
