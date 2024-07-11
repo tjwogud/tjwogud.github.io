@@ -143,13 +143,14 @@ Promise.all([
   presets = result[3];
   background = result[4];
   document.getElementById("copy").onclick = () => {
-    document
-      .getElementById("slots")
-      .toBlob(
-        (blob) => navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]),
-        "image/png"
-      );
-    alert("복사되었습니다.");
+    document.getElementById("slots").toBlob((blob) => {
+      try {
+        navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+        alert("복사되었습니다.");
+      } catch (error) {
+        alert("복사하지 못했습니다. 다운로드 기능을 이용해주세요.");
+      }
+    }, "image/png");
   };
   let typeSelect = document.getElementById("typeSelect");
   typeSelect.onchange = () => {
