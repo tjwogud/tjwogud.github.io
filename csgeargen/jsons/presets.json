@@ -197,37 +197,6 @@
     ]
   },
   {
-    "name": "로디커커",
-    "preset": [
-      {
-        "gear": "pvpR",
-        "set": "cdr",
-        "tier": 7,
-        "lvl": 9
-      },
-      {
-        "gear": "pvpD",
-        "set": "cdr",
-        "tier": 7,
-        "lvl": 9
-      },
-      {
-        "gear": "pvpC",
-        "type": "A",
-        "set": "cdr",
-        "tier": 7,
-        "lvl": 9
-      },
-      {
-        "gear": "pvpC",
-        "type": "A",
-        "set": "cdr",
-        "tier": 7,
-        "lvl": 9
-      }
-    ]
-  },
-  {
     "name": "정글 받회증",
     "preset": [
       {

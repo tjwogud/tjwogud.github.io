@@ -54,14 +54,14 @@ function drawGear(canvas, gearInfo, dx, dy, dw, dh) {
   }
   let loads = [
     loadImage(
-      `img/gear/${gearInfo.gearId}/${gearInfo.gearId}_${gearInfo.unitType}_${gearInfo.slot}`
+      `images/gear/${gearInfo.gearId}/${gearInfo.gearId}_${gearInfo.unitType}_${gearInfo.slot}`
     ),
-    loadImage(`img/set/${gearInfo.set}`),
-    loadImage(`img/tier/t${gearInfo.tier}`),
+    loadImage(`images/set/${gearInfo.set}`),
+    loadImage(`images/tier/t${gearInfo.tier}`),
   ];
-  if (gearInfo.lvl > 0) loads.push(loadImage(`img/lvl/lvl_${gearInfo.lvl}`));
+  if (gearInfo.lvl > 0) loads.push(loadImage(`images/lvl/lvl_${gearInfo.lvl}`));
   var relic = findGear(gearInfo.gearId)["tier"] == 7;
-  if (relic) loads.push(loadImage(`img/relic/relic_${gearInfo.relic}`));
+  if (relic) loads.push(loadImage(`images/relic/relic_${gearInfo.relic}`));
   var key = `${dx},${dy},${dw},${dw},${dh}`;
   var id = seed++;
   if (canvas.dataset.lastDraw == undefined) canvas.dataset.lastDraw = "{}";
@@ -135,10 +135,10 @@ var slots = [];
 
 Promise.all([
   window.onload,
-  fetch("gears.json").then((res) => res.json()),
-  fetch("sets.json").then((res) => res.json()),
-  fetch("presets.json").then((res) => res.json()),
-  loadImage("img/background"),
+  fetch("jsons/gears.json").then((res) => res.json()),
+  fetch("jsons/sets.json").then((res) => res.json()),
+  fetch("jsons/presets.json").then((res) => res.json()),
+  loadImage("images/background"),
 ]).then((result) => {
   gears = result[1];
   sets = result[2];
