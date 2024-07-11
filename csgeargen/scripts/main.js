@@ -78,10 +78,12 @@ function drawGear(canvas, gearInfo, dx, dy, dw, dh) {
     context.drawImage(background, dx, dy, dw, dh);
     context.drawImage(
       images[0],
-      dx + (5 * dw) / 250,
-      dy + (2 * dh) / 250,
+      gearInfo.slot == 0
+        ? dx + (249 * dw) / 250 - (((dw * 244) / 250) * images[0].width) / 256
+        : dx + (5 * dw) / 250,
+      dy + (124 * dh) / 250 - (((dh * 244) / 250) * images[0].height) / 256 / 2,
       (((dw * 244) / 250) * images[0].width) / 256,
-      (dh * 244) / 250
+      (((dh * 244) / 250) * images[0].height) / 256
     );
     context.drawImage(
       images[1],
