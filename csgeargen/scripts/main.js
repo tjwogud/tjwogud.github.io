@@ -244,7 +244,7 @@ Promise.all([
             .write([new ClipboardItem({ "image/png": blob })])
             .then(() => alert("복사되었습니다."));
         } catch (error) {
-          alert("복사하지 못했습니다. 다운로드 기능을 이용해주세요.");
+          alert("복사하지 못했습니다. https 연결을 사용하거나 다운로드 기능을 이용해주세요.");
         }
       }, "image/png")
     );
