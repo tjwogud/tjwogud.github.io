@@ -1,3 +1,12 @@
+function waitUntil(cond) {
+  return new Promise(function (resolve, reject) {
+    (function _waitUntil() {
+      if (cond()) return resolve();
+      setTimeout(_waitUntil, 30);
+    })();
+  });
+}
+
 function loadImage(url) {
   let image = new Image();
   image.src = url;
@@ -115,7 +124,7 @@ function drawGear(canvas, gearInfo, dx, dy, dw, dh) {
         (dw * 78) / 250,
         (dh * 70) / 250
       );
-    if (main)
+    if (main && canvas.dataset.lastDraw === "{}")
       document.getElementById("download").parentElement.href = canvas.toDataURL("images/png");
   });
 }
@@ -144,16 +153,6 @@ Promise.all([
   sets = result[2];
   presets = result[3];
   background = result[4];
-  document.getElementById("copy").onclick = () => {
-    document.getElementById("slots").toBlob((blob) => {
-      try {
-        navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
-        alert("복사되었습니다.");
-      } catch (error) {
-        alert("복사하지 못했습니다. 다운로드 기능을 이용해주세요.");
-      }
-    }, "image/png");
-  };
   let typeSelect = document.getElementById("typeSelect");
   typeSelect.onchange = () => {
     selectedType = typeSelect.value;
@@ -235,6 +234,20 @@ Promise.all([
   });
   slotsCanvas.addEventListener("mouseleave", () => (hover.style.background = "#ffffff00"));
   initPresets();
+  document.getElementById("copy").onclick = () => {
+    waitUntil(
+      () => slotsCanvas.dataset.lastDraw == undefined || slotsCanvas.dataset.lastDraw === "{}"
+    ).then(() =>
+      document.getElementById("slots").toBlob((blob) => {
+        try {
+          navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+          alert("복사되었습니다.");
+        } catch (error) {
+          alert("복사하지 못했습니다. 다운로드 기능을 이용해주세요.");
+        }
+      }, "image/png")
+    );
+  };
   let defaultPreset = presets.find((e) => e["name"] === "메스충")["gearInfo"];
   for (let i = 0; i < 4; i++) {
     slots[i] = copy(defaultPreset[i]);
