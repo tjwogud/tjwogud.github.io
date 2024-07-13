@@ -124,8 +124,6 @@ function drawGear(canvas, gearInfo, dx, dy, dw, dh) {
         (dw * 78) / 250,
         (dh * 70) / 250
       );
-    if (main && canvas.dataset.lastDraw === "{}")
-      document.getElementById("download").parentElement.href = canvas.toDataURL("images/png");
   });
 }
 
@@ -238,7 +236,7 @@ Promise.all([
     waitUntil(
       () => slotsCanvas.dataset.lastDraw == undefined || slotsCanvas.dataset.lastDraw === "{}"
     ).then(() =>
-      document.getElementById("slots").toBlob((blob) => {
+      slotsCanvas.toBlob((blob) => {
         try {
           navigator.clipboard
             .write([new ClipboardItem({ "image/png": blob })])
@@ -248,6 +246,53 @@ Promise.all([
         }
       }, "image/png")
     );
+  };
+  document.getElementById("subcopy").onclick = () => {
+    waitUntil(
+      () => slotsCanvas.dataset.lastDraw == undefined || slotsCanvas.dataset.lastDraw === "{}"
+    ).then(() => {
+      var canvas = document.getElementById("subcanvas");
+      canvas
+        .getContext("2d")
+        .drawImage(slotsCanvas, selectedSlot * 250, 0, 250, 250, 0, 0, 250, 250);
+      canvas.toBlob((blob) => {
+        try {
+          navigator.clipboard
+            .write([new ClipboardItem({ "image/png": blob })])
+            .then(() => alert("복사되었습니다."));
+        } catch (error) {
+          alert("복사하지 못했습니다. https 연결을 사용하거나 다운로드 기능을 이용해주세요.");
+        }
+      }, "image/png");
+    });
+  };
+  document.getElementById("download").onclick = () => {
+    waitUntil(
+      () => slotsCanvas.dataset.lastDraw == undefined || slotsCanvas.dataset.lastDraw === "{}"
+    ).then(() => {
+      var a = document.createElement("a");
+      a.href = slotsCanvas.toDataURL("images/png");
+      a.download = "장비.png";
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => document.body.removeChild(a), 0);
+    });
+  };
+  document.getElementById("subdownload").onclick = () => {
+    waitUntil(
+      () => slotsCanvas.dataset.lastDraw == undefined || slotsCanvas.dataset.lastDraw === "{}"
+    ).then(() => {
+      var canvas = document.getElementById("subcanvas");
+      canvas
+        .getContext("2d")
+        .drawImage(slotsCanvas, selectedSlot * 250, 0, 250, 250, 0, 0, 250, 250);
+      var a = document.createElement("a");
+      a.href = canvas.toDataURL("images/png");
+      a.download = "장비.png";
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => document.body.removeChild(a), 0);
+    });
   };
   let defaultPreset = presets.find((e) => e["name"] === "메스충")["gearInfo"];
   for (let i = 0; i < 4; i++) {
