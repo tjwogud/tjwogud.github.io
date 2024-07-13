@@ -2,8 +2,9 @@
   margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fit, 300px);
-  column-gap: 30px;
+  column-gap: 10px;
   row-gap: 30px;
+  max-width: 990px;
 }
 
 canvas {
