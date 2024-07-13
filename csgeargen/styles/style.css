@@ -1,5 +1,9 @@
-div.preset {
-  margin-top: 20px;
+#presets {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  column-gap: 30px;
+  row-gap: 30px;
 }
 
 canvas {
