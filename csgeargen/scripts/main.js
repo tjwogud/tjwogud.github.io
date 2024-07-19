@@ -352,7 +352,7 @@ function updatePresets() {
   let p = document.getElementById("presets");
   for (let i = 0; i < presets.length; i++) {
     let preset = presets[i];
-    let element = p.children[i + 1];
+    let element = p.children[i];
     if (preset.limit != undefined && !preset["limit"].includes(selectedType)) {
       element.hidden = true;
       continue;
