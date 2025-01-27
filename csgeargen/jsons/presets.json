@@ -24,6 +24,37 @@
     "limit": "c"
   },
   {
+    "name": "메스충",
+    "preset": [
+      {
+        "gear": "pvp1",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvp1",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvp1",
+        "type": "A",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      },
+      {
+        "gear": "pvp1",
+        "type": "A",
+        "set": "cdr",
+        "tier": 7,
+        "lvl": 9
+      }
+    ]
+  },
+  {
     "name": "인메골골",
     "preset": [
       {
@@ -54,33 +85,29 @@
     ]
   },
   {
-    "name": "메스충",
+    "name": "인스스스",
     "preset": [
       {
-        "gear": "pvp1",
+        "gear": "raid2_t7",
         "set": "cdr",
-        "tier": 7,
-        "lvl": 9
+        "lvl": 7
       },
       {
-        "gear": "pvp1",
+        "gear": "dim1",
         "set": "cdr",
-        "tier": 7,
-        "lvl": 9
+        "lvl": 7
       },
       {
-        "gear": "pvp1",
-        "type": "A",
+        "gear": "dim1",
+        "type": "B",
         "set": "cdr",
-        "tier": 7,
-        "lvl": 9
+        "lvl": 7
       },
       {
-        "gear": "pvp1",
-        "type": "A",
+        "gear": "dim1",
+        "type": "B",
         "set": "cdr",
-        "tier": 7,
-        "lvl": 9
+        "lvl": 7
       }
     ]
   },
